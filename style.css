@@ -1,0 +1,1171 @@
+
+/* ================================
+   DREAMCORE TO-DO TRACKER
+================================ */
+
+
+/* ---------- RESET ---------- */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+/* ---------- BODY ---------- */
+
+body {
+
+    min-height: 100vh;
+
+    font-family: "Comfortaa", sans-serif;
+
+    color: #4f4966;
+
+    background:
+        radial-gradient(circle at 20% 20%, #ffd9f3 0%, transparent 25%),
+        radial-gradient(circle at 80% 10%, #d9e6ff 0%, transparent 25%),
+        radial-gradient(circle at 70% 80%, #e6d9ff 0%, transparent 30%),
+        linear-gradient(
+            135deg,
+            #f7eaff,
+            #e9e7ff,
+            #dff4ff
+        );
+
+    overflow-x: hidden;
+
+    transition: 0.5s ease;
+}
+
+
+/* ---------- DREAMY STARS ---------- */
+
+.stars::before,
+.stars::after {
+
+    content: "✦  ✧  ⋆  ✦  ˚  ✧  ⋆  ✦  ˚  ✧";
+
+    position: fixed;
+
+    width: 100%;
+
+    color: rgba(255, 255, 255, 0.8);
+
+    font-size: 25px;
+
+    letter-spacing: 50px;
+
+    pointer-events: none;
+
+    animation: twinkle 4s infinite alternate;
+
+    z-index: -1;
+}
+
+
+.stars::before {
+    top: 10%;
+    left: 5%;
+}
+
+
+.stars::after {
+    top: 65%;
+    left: 20%;
+    animation-delay: 2s;
+}
+
+
+@keyframes twinkle {
+
+    from {
+        opacity: 0.2;
+        transform: scale(0.8);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1.2);
+    }
+}
+
+
+/* ---------- CLOUDS ---------- */
+
+.cloud {
+
+    position: fixed;
+
+    width: 180px;
+    height: 60px;
+
+    background: rgba(255,255,255,0.35);
+
+    border-radius: 100px;
+
+    filter: blur(2px);
+
+    z-index: -1;
+
+    animation: floatCloud 15s infinite alternate ease-in-out;
+}
+
+
+.cloud::before,
+.cloud::after {
+
+    content: "";
+
+    position: absolute;
+
+    background: inherit;
+
+    border-radius: 50%;
+}
+
+
+.cloud::before {
+
+    width: 80px;
+    height: 80px;
+
+    left: 30px;
+    top: -35px;
+}
+
+
+.cloud::after {
+
+    width: 100px;
+    height: 100px;
+
+    right: 20px;
+    top: -50px;
+}
+
+
+.cloud1 {
+
+    top: 12%;
+    left: -50px;
+}
+
+
+.cloud2 {
+
+    top: 50%;
+    right: -70px;
+
+    animation-delay: 3s;
+}
+
+
+.cloud3 {
+
+    bottom: 5%;
+    left: 10%;
+
+    transform: scale(0.7);
+
+    animation-delay: 6s;
+}
+
+
+@keyframes floatCloud {
+
+    from {
+        transform: translateX(-20px);
+    }
+
+    to {
+        transform: translateX(80px);
+    }
+}
+
+
+/* ---------- FLOATING BUTTERFLIES ---------- */
+
+.butterfly {
+
+    position: fixed;
+
+    font-size: 35px;
+
+    pointer-events: none;
+
+    z-index: 0;
+
+    animation: butterflyFloat 6s infinite ease-in-out;
+}
+
+
+.butterfly1 {
+
+    top: 20%;
+    left: 7%;
+}
+
+
+.butterfly2 {
+
+    bottom: 15%;
+    right: 8%;
+
+    animation-delay: 2s;
+}
+
+
+@keyframes butterflyFloat {
+
+    0% {
+        transform: translateY(0) rotate(-5deg);
+    }
+
+    50% {
+        transform: translateY(-30px) rotate(8deg);
+    }
+
+    100% {
+        transform: translateY(0) rotate(-5deg);
+    }
+}
+
+
+/* ---------- SPARKLES ---------- */
+
+.sparkle {
+
+    position: fixed;
+
+    color: white;
+
+    font-size: 28px;
+
+    animation: sparkleMove 3s infinite alternate;
+
+    pointer-events: none;
+}
+
+
+.sparkle1 {
+    top: 15%;
+    right: 20%;
+}
+
+
+.sparkle2 {
+    top: 70%;
+    left: 15%;
+    animation-delay: 1s;
+}
+
+
+.sparkle3 {
+    bottom: 10%;
+    right: 25%;
+    animation-delay: 2s;
+}
+
+
+@keyframes sparkleMove {
+
+    from {
+        opacity: 0.2;
+        transform: rotate(0deg) scale(0.7);
+    }
+
+    to {
+        opacity: 1;
+        transform: rotate(180deg) scale(1.2);
+    }
+}
+
+
+/* ---------- MAIN APP ---------- */
+
+.app {
+
+    width: min(900px, 92%);
+
+    margin: 50px auto;
+
+    position: relative;
+
+    z-index: 2;
+}
+
+
+/* ---------- HEADER ---------- */
+
+.header {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: flex-start;
+
+    margin-bottom: 30px;
+}
+
+
+.mini-title {
+
+    font-size: 13px;
+
+    color: #9b91b8;
+
+    margin-bottom: 8px;
+}
+
+
+h1 {
+
+    font-size: clamp(42px, 7vw, 70px);
+
+    font-weight: 700;
+
+    letter-spacing: -3px;
+
+    color: #6f6689;
+
+    text-shadow:
+        3px 3px 0 rgba(255,255,255,0.7);
+}
+
+
+h1 span {
+
+    color: #a77bd4;
+
+    font-style: italic;
+}
+
+
+.subtitle {
+
+    margin-top: 8px;
+
+    color: #8c83a4;
+
+    font-size: 14px;
+}
+
+
+/* ---------- BUTTONS ---------- */
+
+.icon-button {
+
+    border: none;
+
+    width: 50px;
+    height: 50px;
+
+    border-radius: 50%;
+
+    background: rgba(255,255,255,0.55);
+
+    backdrop-filter: blur(10px);
+
+    box-shadow:
+        0 8px 25px rgba(130,110,170,0.15);
+
+    cursor: pointer;
+
+    font-size: 22px;
+
+    transition: 0.3s;
+}
+
+
+.icon-button:hover {
+
+    transform: rotate(20deg) scale(1.1);
+
+    background: white;
+}
+
+
+/* ---------- GLASS CARDS ---------- */
+
+.progress-card,
+.add-card {
+
+    background: rgba(255,255,255,0.42);
+
+    border: 1px solid rgba(255,255,255,0.7);
+
+    backdrop-filter: blur(18px);
+
+    border-radius: 28px;
+
+    box-shadow:
+        0 20px 50px rgba(120,100,160,0.12);
+
+    padding: 25px;
+
+    margin-bottom: 20px;
+}
+
+
+/* ---------- PROGRESS ---------- */
+
+.progress-info {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+}
+
+
+.progress-info p {
+
+    font-size: 13px;
+
+    color: #958baa;
+}
+
+
+.progress-info h2 {
+
+    font-size: 38px;
+
+    color: #80679d;
+
+    margin-top: 4px;
+}
+
+
+.moon {
+
+    font-size: 45px;
+
+    animation: moonFloat 3s infinite ease-in-out;
+}
+
+
+@keyframes moonFloat {
+
+    0%,100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-8px) rotate(5deg);
+    }
+}
+
+
+.progress-bar {
+
+    width: 100%;
+
+    height: 12px;
+
+    background: rgba(255,255,255,0.55);
+
+    border-radius: 20px;
+
+    margin: 18px 0 10px;
+
+    overflow: hidden;
+}
+
+
+#progressFill {
+
+    height: 100%;
+
+    width: 0%;
+
+    border-radius: inherit;
+
+    background:
+        linear-gradient(
+            90deg,
+            #c5a4ef,
+            #f4acd9,
+            #a9d9ed
+        );
+
+    transition: width 0.7s ease;
+}
+
+
+#taskCount {
+
+    font-size: 12px;
+
+    color: #958baa;
+}
+
+
+/* ---------- ADD TASK ---------- */
+
+.add-card {
+
+    display: grid;
+
+    grid-template-columns:
+        1fr
+        auto
+        auto
+        auto;
+
+    gap: 10px;
+}
+
+
+input,
+select {
+
+    border: none;
+
+    outline: none;
+
+    background: rgba(255,255,255,0.65);
+
+    color: #5e5674;
+
+    padding: 14px 16px;
+
+    border-radius: 15px;
+
+    font-family: inherit;
+
+    border: 1px solid transparent;
+
+    transition: 0.3s;
+}
+
+
+input:focus,
+select:focus {
+
+    border-color: #c7a9e9;
+
+    box-shadow:
+        0 0 0 4px rgba(199,169,233,0.15);
+}
+
+
+.add-button {
+
+    border: none;
+
+    border-radius: 15px;
+
+    padding: 14px 20px;
+
+    font-family: inherit;
+
+    font-weight: 700;
+
+    color: white;
+
+    cursor: pointer;
+
+    background:
+        linear-gradient(
+            135deg,
+            #a88bd4,
+            #d79bc7
+        );
+
+    box-shadow:
+        0 8px 20px rgba(160,120,190,0.25);
+
+    transition: 0.3s;
+}
+
+
+.add-button:hover {
+
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 12px 25px rgba(160,120,190,0.35);
+}
+
+
+.add-button:active {
+
+    transform: scale(0.95);
+}
+
+
+/* ---------- FILTERS ---------- */
+
+.filters {
+
+    display: flex;
+
+    gap: 10px;
+
+    margin: 25px 0;
+}
+
+
+.filter {
+
+    border: none;
+
+    background: rgba(255,255,255,0.35);
+
+    color: #817695;
+
+    padding: 11px 18px;
+
+    border-radius: 20px;
+
+    font-family: inherit;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+}
+
+
+.filter:hover {
+
+    background: rgba(255,255,255,0.65);
+
+    transform: translateY(-2px);
+}
+
+
+.filter.active {
+
+    background: white;
+
+    color: #8d70ae;
+
+    box-shadow:
+        0 6px 18px rgba(120,100,150,0.12);
+}
+
+
+/* ---------- TASK ---------- */
+
+.task-list {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 13px;
+}
+
+
+.task {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 15px;
+
+    padding: 18px;
+
+    border-radius: 22px;
+
+    background: rgba(255,255,255,0.48);
+
+    border: 1px solid rgba(255,255,255,0.7);
+
+    backdrop-filter: blur(15px);
+
+    box-shadow:
+        0 10px 30px rgba(120,100,160,0.08);
+
+    animation: taskAppear 0.45s ease;
+
+    transition: 0.3s;
+}
+
+
+.task:hover {
+
+    transform: translateX(5px);
+
+    background: rgba(255,255,255,0.65);
+
+    box-shadow:
+        0 15px 35px rgba(120,100,160,0.12);
+}
+
+
+@keyframes taskAppear {
+
+    from {
+        opacity: 0;
+        transform: translateY(15px) scale(0.97);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+
+/* ---------- CHECKBOX ---------- */
+
+.check {
+
+    width: 25px;
+    height: 25px;
+
+    border: 2px solid #bda5d6;
+
+    border-radius: 50%;
+
+    cursor: pointer;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    transition: 0.3s;
+}
+
+
+.check:hover {
+
+    transform: scale(1.15);
+
+    background: #eee1fa;
+}
+
+
+.task.completed .check {
+
+    background: #b99bdb;
+
+    border-color: #b99bdb;
+
+    color: white;
+}
+
+
+.task.completed .check::after {
+
+    content: "✓";
+
+    font-size: 14px;
+}
+
+
+/* ---------- TASK CONTENT ---------- */
+
+.task-content {
+
+    flex: 1;
+}
+
+
+.task-title {
+
+    font-size: 15px;
+
+    color: #5c5670;
+
+    font-weight: 600;
+
+    transition: 0.3s;
+}
+
+
+.task.completed .task-title {
+
+    text-decoration: line-through;
+
+    opacity: 0.45;
+}
+
+
+.task-details {
+
+    display: flex;
+
+    gap: 10px;
+
+    margin-top: 7px;
+
+    font-size: 11px;
+
+    color: #948aa5;
+}
+
+
+/* ---------- PRIORITY ---------- */
+
+.priority {
+
+    padding: 4px 8px;
+
+    border-radius: 10px;
+
+    font-size: 10px;
+}
+
+
+.priority.low {
+
+    background: #dff4df;
+
+    color: #67906b;
+}
+
+
+.priority.medium {
+
+    background: #fff0ce;
+
+    color: #a27c42;
+}
+
+
+.priority.high {
+
+    background: #ffe0ea;
+
+    color: #a95c77;
+}
+
+
+/* ---------- ACTION BUTTONS ---------- */
+
+.task-actions {
+
+    display: flex;
+
+    gap: 6px;
+}
+
+
+.task-actions button {
+
+    border: none;
+
+    width: 34px;
+    height: 34px;
+
+    border-radius: 50%;
+
+    background: rgba(255,255,255,0.6);
+
+    cursor: pointer;
+
+    transition: 0.25s;
+}
+
+
+.task-actions button:hover {
+
+    transform: scale(1.15);
+
+    background: white;
+}
+
+
+/* ---------- EMPTY STATE ---------- */
+
+.empty-state {
+
+    text-align: center;
+
+    padding: 50px 20px;
+
+    color: #948aa7;
+}
+
+
+.empty-moon {
+
+    font-size: 65px;
+
+    color: #a88bd4;
+
+    animation: moonFloat 3s infinite ease-in-out;
+}
+
+
+.empty-state h2 {
+
+    margin: 10px 0;
+
+    color: #716782;
+}
+
+
+.empty-state p {
+
+    font-size: 13px;
+}
+
+
+/* ---------- FOOTER ---------- */
+
+footer {
+
+    text-align: center;
+
+    margin-top: 40px;
+
+    font-size: 11px;
+
+    color: #9c92ac;
+}
+
+
+/* ---------- MODAL ---------- */
+
+.modal {
+
+    position: fixed;
+
+    inset: 0;
+
+    background: rgba(80,65,100,0.25);
+
+    backdrop-filter: blur(8px);
+
+    display: none;
+
+    align-items: center;
+
+    justify-content: center;
+
+    z-index: 100;
+}
+
+
+.modal.show {
+
+    display: flex;
+
+    animation: fadeIn 0.3s ease;
+}
+
+
+.modal-box {
+
+    width: min(450px, 90%);
+
+    padding: 30px;
+
+    background: rgba(255,255,255,0.75);
+
+    backdrop-filter: blur(20px);
+
+    border-radius: 30px;
+
+    box-shadow:
+        0 25px 70px rgba(80,60,110,0.25);
+
+    position: relative;
+}
+
+
+.modal-box h2 {
+
+    margin-bottom: 20px;
+
+    color: #716782;
+}
+
+
+.modal-box input {
+
+    width: 100%;
+
+    margin-bottom: 15px;
+}
+
+
+.close-button {
+
+    position: absolute;
+
+    top: 15px;
+
+    right: 18px;
+
+    border: none;
+
+    background: transparent;
+
+    font-size: 25px;
+
+    cursor: pointer;
+
+    color: #82778f;
+}
+
+
+@keyframes fadeIn {
+
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+
+/* ---------- DARK DREAM MODE ---------- */
+
+body.dark {
+
+    color: #eee8f7;
+
+    background:
+        radial-gradient(circle at 20% 20%, #493e69, transparent 30%),
+        radial-gradient(circle at 80% 10%, #374b70, transparent 30%),
+        linear-gradient(
+            135deg,
+            #171528,
+            #24213d,
+            #172536
+        );
+}
+
+
+body.dark h1 {
+
+    color: #eee6ff;
+}
+
+
+body.dark h1 span {
+
+    color: #d5b8f5;
+}
+
+
+body.dark .subtitle,
+body.dark .mini-title,
+body.dark #taskCount {
+
+    color: #bdb2d0;
+}
+
+
+body.dark .progress-card,
+body.dark .add-card,
+body.dark .task {
+
+    background: rgba(40,35,65,0.55);
+
+    border-color: rgba(255,255,255,0.12);
+}
+
+
+body.dark .task-title {
+
+    color: #eee7f5;
+}
+
+
+body.dark input,
+body.dark select {
+
+    background: rgba(30,28,50,0.7);
+
+    color: #eee;
+}
+
+
+body.dark .filter {
+
+    color: #d0c5df;
+
+    background: rgba(40,35,65,0.5);
+}
+
+
+body.dark .filter.active {
+
+    background: rgba(255,255,255,0.15);
+
+    color: white;
+}
+
+
+body.dark .modal-box {
+
+    background: rgba(35,30,55,0.9);
+}
+
+
+body.dark .modal-box h2 {
+
+    color: #eee;
+}
+
+
+/* ---------- MOBILE ---------- */
+
+@media (max-width: 700px) {
+
+    .app {
+
+        margin: 30px auto;
+    }
+
+
+    .header {
+
+        align-items: center;
+    }
+
+
+    h1 {
+
+        font-size: 45px;
+    }
+
+
+    .add-card {
+
+        grid-template-columns: 1fr;
+    }
+
+
+    .filters {
+
+        justify-content: center;
+
+        flex-wrap: wrap;
+    }
+
+
+    .task {
+
+        padding: 15px;
+    }
+
+
+    .task-actions button {
+
+        width: 30px;
+        height: 30px;
+    }
+
+
+    .butterfly {
+
+        display: none;
+    }
+}
